@@ -143,6 +143,18 @@ function M.setup(opts)
 
 	-- Trigger initial update
 	M.update_all()
+
+	-- Clear all widget variables when Neovim exits
+	vim.api.nvim_create_autocmd("VimLeavePre", {
+		group = vim.api.nvim_create_augroup("TmuxStatusCleanup", { clear = true }),
+		callback = function()
+			for name in pairs(M.widgets) do
+				local widget = M.widgets[name]
+				set_tmux_var(widget.tmux_var, "")
+			end
+		end
+	})
+
 end
 
 return M
