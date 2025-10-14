@@ -2,7 +2,7 @@
 
 Display Neovim information in your tmux status line. Show buffers, files, modes, and custom data with a simple widget-based system.
 
----
+
 ## Installation
 
 **lazy.nvim:**
@@ -15,7 +15,6 @@ Display Neovim information in your tmux status line. Show buffers, files, modes,
 use { 'holesachin/tmuxstatus.nvim' }
 ```
 
----
 ## Quick Start
 
 **Neovim config:**
@@ -34,11 +33,11 @@ require('tmuxstatus').setup({
 set -g status-right "#{@nvim_mode} | #{@nvim_file} | #{@nvim_buffers}"
 ```
 
----
+
 ## Built-in Widgets
 
 | Widget         | Variable        | Description                        |
-| -------------- | --------------- | ---------------------------------- |
+| -- |  | - |
 | `mode`         | `@nvim_mode`    | Current mode (NORMAL, INSERT, etc) |
 | `current_file` | `@nvim_file`    | Active file name                   |
 | `buffers`      | `@nvim_buffers` | List of open buffers               |
@@ -59,7 +58,7 @@ set -g status-right "#{@nvim_mode} | #{@nvim_file} | #{@nvim_buffers}"
 }
 ```
 
----
+
 ## Custom Widgets
 
 **Method 1: Inline function**
@@ -89,7 +88,7 @@ tmuxstatus.register('line_count', {
 })
 ```
 
----
+
 ## Widget Options
 
 - `name` - Widget identifier (required)
@@ -99,7 +98,7 @@ tmuxstatus.register('line_count', {
 - `events` - Neovim events triggering updates
 - `condition` - Function to show/hide widget
 
----
+
 ## Configuration
 
 **Method 1: All widgets in setup**
@@ -159,9 +158,7 @@ tmuxstatus.register('git_branch', {
 })
 ```
 
----
 ## License
 
 MIT
 
----
