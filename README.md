@@ -2,15 +2,21 @@
 
 Display Neovim information in your tmux status line. Show buffers, files, modes, and custom data with a simple widget-based system.
 
+<!-- panvimdoc-ignore-start -->
+
+![code size](https://img.shields.io/github/languages/code-size/holesachin/tmuxstatus.nvim?style=flat-square)
+![license](https://img.shields.io/github/license/holesachin/tmuxstatus.nvim?style=flat-square)
+
+<!-- panvimdoc-ignore-end -->
 
 ## Installation
 
-**lazy.nvim:**
+### [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
 { 'holesachin/tmuxstatus.nvim', opts = {} }
 ```
 
-**packer.nvim:**
+### [packer](https://github.com/wbthomason/packer.nvim)
 ```lua
 use { 'holesachin/tmuxstatus.nvim' }
 ```
@@ -157,6 +163,10 @@ tmuxstatus.register('git_branch', {
   format = " %s",
 })
 ```
+
+## Similar Plugins
+[tmux-status.nvim](https://github.com/christopher-francisco/tmux-status.nvim)
+[vim-tpipeline](https://github.com/vimpostor/vim-tpipeline)
 
 ## License
 
