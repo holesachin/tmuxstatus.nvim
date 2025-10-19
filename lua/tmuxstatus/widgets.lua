@@ -73,7 +73,7 @@ M.mode = {
 			label, color = mode, "default"
 		end
 
-		return string.format("#[fg=black,bg=%s,bold]  %s #[default]", color, label)
+		return string.format("#[fg=black,bg=%s,bold] %s #[default]", color, label)
 	end
 }
 
