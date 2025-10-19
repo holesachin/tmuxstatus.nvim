@@ -8,6 +8,7 @@ M.widgets = {}
 
 -- Default configuration
 M.config = {
+	hide_vim_statusbar = false,
 	update_events = { "BufEnter", "BufLeave", "WinEnter", "ModeChanged" },
 	update_interval = 100, -- ms debounce
 }
@@ -100,6 +101,11 @@ function M.setup(opts)
 	if not in_tmux() then 
 		vim.notify("tmuxstatus: Not running in tmux, plugin disabled", vim.log.levels.WARN)
 		return 
+	end
+
+	-- Hide Neovim Statusbar
+	if M.config.hide_vim_statusbar then 
+		vim.opt.laststatus = 0
 	end
 
 	-- Load predefined widgets
