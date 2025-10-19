@@ -3,20 +3,23 @@
 Display Neovim information in your tmux status line. Show buffers, files, modes, and custom data with a simple widget-based system.
 
 <!-- panvimdoc-ignore-start -->
-
 ![code size](https://img.shields.io/github/languages/code-size/holesachin/tmuxstatus.nvim?style=flat-square)
 ![license](https://img.shields.io/github/license/holesachin/tmuxstatus.nvim?style=flat-square)
-
 <!-- panvimdoc-ignore-end -->
 
 ## Installation
 
 ### [lazy.nvim](https://github.com/folke/lazy.nvim)
+
 ```lua
-{ 'holesachin/tmuxstatus.nvim', opts = {} }
+{ 
+    'holesachin/tmuxstatus.nvim', 
+    opts = {}, 
+}
 ```
 
 ### [packer](https://github.com/wbthomason/packer.nvim)
+
 ```lua
 use { 'holesachin/tmuxstatus.nvim' }
 ```
@@ -24,6 +27,7 @@ use { 'holesachin/tmuxstatus.nvim' }
 ## Quick Start
 
 **Neovim config:**
+
 ```lua
 require('tmuxstatus').setup({
   widgets = {
@@ -35,6 +39,7 @@ require('tmuxstatus').setup({
 ```
 
 **tmux.conf:**
+
 ```bash
 set -g status-right "#{@nvim_mode} | #{@nvim_file} | #{@nvim_buffers}"
 ```
@@ -42,13 +47,16 @@ set -g status-right "#{@nvim_mode} | #{@nvim_file} | #{@nvim_buffers}"
 
 ## Built-in Widgets
 
+
 | Widget         | Variable        | Description                        |
-| -- |  | - |
-| `mode`         | `@nvim_mode`    | Current mode (NORMAL, INSERT, etc) |
-| `current_file` | `@nvim_file`    | Active file name                   |
-| `buffers`      | `@nvim_buffers` | List of open buffers               |
+| -- | -- | -- |
+| mode         | @nvim_mode    | Current mode (NORMAL, INSERT, etc) |
+| current_file | @nvim_file   | Active file name                   |
+| buffers      | @nvim_buffers | List of open buffers               |
+
 
 **Widget options:**
+
 ```lua
 {
   name = 'current_file',
@@ -68,6 +76,7 @@ set -g status-right "#{@nvim_mode} | #{@nvim_file} | #{@nvim_buffers}"
 ## Custom Widgets
 
 **Method 1: Inline function**
+
 ```lua
 {
   name = 'git_branch',
@@ -82,6 +91,7 @@ set -g status-right "#{@nvim_mode} | #{@nvim_file} | #{@nvim_buffers}"
 ```
 
 **Method 2: Register programmatically**
+
 ```lua
 local tmuxstatus = require('tmuxstatus')
 
@@ -108,6 +118,7 @@ tmuxstatus.register('line_count', {
 ## Configuration
 
 **Method 1: All widgets in setup**
+
 ```lua
 require('tmuxstatus').setup({
   -- Events that trigger widget updates
@@ -115,6 +126,9 @@ require('tmuxstatus').setup({
   
   -- Debounce delay in milliseconds
   update_interval = 100,
+
+  -- Hide Neovim status bar
+  hide_vim_statusbar = false, -- defaut false
   
   -- Widget definitions
   widgets = {
@@ -144,6 +158,7 @@ require('tmuxstatus').setup({
 ```
 
 **Method 2: Register widgets separately**
+
 ```lua
 local tmuxstatus = require('tmuxstatus')
 
@@ -165,6 +180,7 @@ tmuxstatus.register('git_branch', {
 ```
 
 ## Similar Plugins
+
 [tmux-status.nvim](https://github.com/christopher-francisco/tmux-status.nvim)
 [vim-tpipeline](https://github.com/vimpostor/vim-tpipeline)
 
