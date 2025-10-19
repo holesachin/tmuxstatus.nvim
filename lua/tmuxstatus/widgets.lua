@@ -46,15 +46,34 @@ M.current_file = {
 }
 
 -- Mode widget
-M.mode = { 
+M.mode = {
 	tmux_var = "nvim_mode",
 	fn = function()
 		local mode_map = {
-			n = "NORMAL", i = "INSERT", v = "VISUAL", V = "V-LINE",
-			["\22"] = "V-BLOCK", c = "COMMAND", s = "SELECT", S = "S-LINE",
-			["\19"] = "S-BLOCK", R = "REPLACE", t = "TERMINAL"
+			n = { "Normal",  "green"  },
+			i = { "Insert",  "blue"   },
+			v = { "Visual",  "magenta"},
+			V = { "V-LINE",  "magenta"},
+			["\22"] = { "V-BLOCK", "magenta" },
+			c = { "Command", "yellow" },
+			s = { "SELECT",  "cyan"   },
+			S = { "S-LINE",  "cyan"   },
+			["\19"] = { "S-BLOCK", "cyan" },
+			R = { "REPLACE", "red"    },
+			t = { "TERMINAL","brightblack" },
 		}
-		return mode_map[vim.fn.mode()] or vim.fn.mode()
+
+		local mode = vim.fn.mode()
+		local entry = mode_map[mode]
+		local label, color
+
+		if entry then
+			label, color = entry[1], entry[2]
+		else
+			label, color = mode, "default"
+		end
+
+		return string.format("#[fg=black,bg=%s,bold]  %s #[default]", color, label)
 	end
 }
 
