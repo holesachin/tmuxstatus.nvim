@@ -150,15 +150,30 @@ function M.setup(opts)
 	-- Trigger initial update
 	M.update_all()
 
+	-- Trigger update on FocusGained
+	vim.api.nvim_create_autocmd("FocusGained", {
+		group = vim.api.nvim_create_augroup("TmuxStatus", { clear = true }),
+		callback = M.update_all
+	})
+
+	-- Clear all widget variables
+	local clear_all = function()
+		for name in pairs(M.widgets) do
+			local widget = M.widgets[name]
+			set_tmux_var(widget.tmux_var, "")
+		end
+	end
+
 	-- Clear all widget variables when Neovim exits
 	vim.api.nvim_create_autocmd("VimLeavePre", {
 		group = vim.api.nvim_create_augroup("TmuxStatusCleanup", { clear = true }),
-		callback = function()
-			for name in pairs(M.widgets) do
-				local widget = M.widgets[name]
-				set_tmux_var(widget.tmux_var, "")
-			end
-		end
+		callback = clear_all
+	})
+
+	-- Clear all widget variables when Neovim FocusLost
+	vim.api.nvim_create_autocmd("FocusLost", {
+		group = vim.api.nvim_create_augroup("TmuxStatusCleanup", { clear = true }),
+		callback = clear_all
 	})
 
 end
